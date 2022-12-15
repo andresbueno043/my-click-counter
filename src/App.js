@@ -1,23 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import { Button } from './components/button';
+import { Counter } from './components/counter';
+import React, { useState } from 'react';
 
 function App() {
+
+  const [clickNumber, setClickNumber] = useState(0);
+
+  const clickHandler = () => {
+    setClickNumber(clickNumber + 1);
+  };
+
+  const resetCounter = () => {
+    setClickNumber(0);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className='title'>My own click counter</h1>
+      <div className='main-container'>
+        <Counter
+          clickNumber={clickNumber}
+        />
+        <Button 
+          text='Click'
+          isClickButton={true}
+          clickHandler={clickHandler}
+        />
+        <Button 
+          text='Reset'
+          isClickButton={false}
+          clickHandler={resetCounter}
+        />
+      </div>
+      
     </div>
   );
 }
